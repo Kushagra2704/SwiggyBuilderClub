@@ -391,6 +391,7 @@ export default function ConciergeWidget() {
       {/* Floating button */}
       <button
         onClick={() => setOpen((v) => !v)}
+        onTouchEnd={(e) => { e.preventDefault(); setOpen((v) => !v); }}
         aria-label="Open Swiggy Concierge"
         className="fixed bottom-20 md:bottom-4 right-4 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#FC8019] text-white shadow-lg transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(252,128,25,0.4)] sm:right-6"
       >
