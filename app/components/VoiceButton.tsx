@@ -29,6 +29,19 @@ declare global {
   }
 }
 
+const CORRECTIONS: [RegExp, string][] = [
+  [/\b(insta\s?mart|instrument|instagram|instamart|instant mart|insta mark)\b/gi, "Instamart"],
+  [/\b(swiggy|ziggy|wiggy|sugary|swiggie|sweegy|swigy)\b/gi, "Swiggy"],
+  [/\b(dine\s?out|dinout|dine out)\b/gi, "Dineout"],
+  [/\b(biryani|bryani|biriyani|beriani)\b/gi, "biryani"],
+  [/\b(behrouz|behroz|be rows|bahrooz)\b/gi, "Behrouz"],
+  [/\b(haldiram[s']?|haldi ram|haldirams)\b/gi, "Haldiram's"],
+];
+
+function correctTranscript(text: string): string {
+  return CORRECTIONS.reduce((t, [pattern, replacement]) => t.replace(pattern, replacement), text);
+}
+
 export default function VoiceButton({ onTranscript, disabled }: Props) {
   const [supported, setSupported] = useState(false);
   const [listening, setListening] = useState(false);
@@ -47,10 +60,11 @@ export default function VoiceButton({ onTranscript, disabled }: Props) {
     const recognition = new SpeechRecognition() as SpeechRecognitionInstance;
     recognition.continuous = false;
     recognition.interimResults = false;
-    recognition.lang = "en-IN";
+    recognition.lang = "en-GB";
 
     recognition.onresult = (e) => {
-      const transcript = e.results[0][0].transcript.trim();
+      const raw = e.results[0][0].transcript.trim();
+      const transcript = correctTranscript(raw);
       if (transcript) onTranscriptRef.current(transcript);
     };
     recognition.onend = () => setListening(false);

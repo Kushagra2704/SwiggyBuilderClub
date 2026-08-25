@@ -18,14 +18,13 @@ const WELCOME: Message = {
 // across devices, so we first scan by lang="en-IN", then fall back to these.
 const VOICE_PREFS = [
   "Google UK English Female",
+  "Moira",           // macOS Irish (female)
+  "Samantha",        // macOS / iOS (female)
+  "Karen",           // macOS Australian (female)
+  "Microsoft Zira",  // Windows (female)
+  "Microsoft Eva",   // Windows (female)
+  "Microsoft Aria",  // Windows 11 (female)
   "Google US English",
-  "Samantha",        // macOS / iOS
-  "Karen",           // macOS Australian
-  "Daniel",          // macOS UK Male
-  "Moira",           // macOS Irish
-  "Microsoft Zira",  // Windows
-  "Microsoft Eva",   // Windows
-  "Microsoft Aria",  // Windows 11
 ];
 
 let _bestVoice: SpeechSynthesisVoice | null = null;
@@ -34,17 +33,13 @@ function pickBestVoice(): SpeechSynthesisVoice | null {
   const voices = window.speechSynthesis.getVoices();
   if (!voices.length) return null;
 
-  // Prefer Indian English if the device has one (Android + Google TTS, some
-  // Indian-locale Windows installs). No consistent name, so match by lang.
-  const indian = voices.find((v) => v.lang === "en-IN");
-  if (indian) return indian;
-
-  // Fall back to known high-quality named voices.
+  // Prefer named UK/female voices in order.
   for (const name of VOICE_PREFS) {
     const v = voices.find((v) => v.name === name);
     if (v) return v;
   }
 
+  // Fallback: any en-GB voice, then en-US, then any English.
   return (
     voices.find((v) => v.lang === "en-GB") ||
     voices.find((v) => v.lang === "en-US") ||
@@ -289,7 +284,7 @@ export default function ConciergeWidget() {
     <>
       {/* Expanded panel */}
       {open && (
-        <div className="fixed bottom-[5.5rem] md:bottom-24 right-2 z-50 flex w-[360px] max-h-[560px] md:max-h-[600px] flex-col overflow-hidden rounded-2xl bg-[#111] shadow-2xl ring-1 ring-white/10 sm:right-6">
+        <div className="fixed bottom-[5.5rem] md:bottom-24 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-6 z-50 flex w-[calc(100vw-1rem)] max-w-[360px] max-h-[560px] md:max-h-[600px] flex-col overflow-hidden rounded-2xl bg-[#111] shadow-2xl ring-1 ring-white/10">
           {/* Panel header */}
           <div className="flex items-center gap-2 border-b border-white/5 bg-[#0A0A0A] px-4 py-3">
             <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#FC8019]">
@@ -388,35 +383,25 @@ export default function ConciergeWidget() {
         </div>
       )}
 
-      {/* Floating button */}
-      <button
-        onClick={() => setOpen((v) => !v)}
-        onTouchEnd={(e) => { e.preventDefault(); setOpen((v) => !v); }}
+      {/* Floating button — hidden when panel is open */}
+      {!open && <button
+        onClick={() => setOpen(true)}
+        onTouchEnd={(e) => { e.preventDefault(); setOpen(true); }}
         aria-label="Open Swiggy Concierge"
         className="fixed bottom-20 md:bottom-4 right-4 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#FC8019] text-white shadow-lg transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(252,128,25,0.4)] sm:right-6"
       >
-        {open ? (
-          <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
-            <path
-              fillRule="evenodd"
-              d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z"
-              clipRule="evenodd"
-            />
-          </svg>
-        ) : (
           <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
             <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3Z" />
             <path d="M19 10v2a7 7 0 0 1-14 0v-2H3v2a9 9 0 0 0 8 8.94V22H8v2h8v-2h-3v-1.06A9 9 0 0 0 21 12v-2h-2Z" />
           </svg>
-        )}
 
         {/* Notification dot when disconnected */}
-        {!authStatus.connected && !open && (
+        {!authStatus.connected && (
           <span className="absolute -right-0.5 -top-0.5 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-red-500 text-[8px] font-bold text-white">
             !
           </span>
         )}
-      </button>
+      </button>}
     </>
   );
 }
