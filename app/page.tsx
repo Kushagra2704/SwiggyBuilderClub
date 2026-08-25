@@ -19,24 +19,24 @@ const CATEGORIES = [
 
 const CHAINS = [
   { name: "McDonald's", emoji: "🍔", bg: "from-yellow-400 to-yellow-300", rating: 4.3, time: "20-25 mins", offer: "FREE McFlurry above ₹299", tags: "Burgers · Wraps" },
-  { name: "Pizza Hut",  emoji: "🍕", img: "/PizzaHut.jpeg",    bg: "from-red-600 to-red-500",       rating: 4.1, time: "30-35 mins", offer: "Buy 1 Get 1 Free",        tags: "Pizzas · Pastas" },
+  { name: "Pizza Hut",  emoji: "🍕", img: "/PizzaHutNew.png",    bg: "from-red-600 to-red-500",       rating: 4.1, time: "30-35 mins", offer: "Buy 1 Get 1 Free",        tags: "Pizzas · Pastas" },
   { name: "Domino's",   emoji: "🍕", bg: "from-blue-700 to-blue-500",     rating: 4.2, time: "25-30 mins", offer: "2 Pizzas at ₹99",          tags: "Pizzas · Sides" },
   { name: "KFC",        emoji: "🍗", bg: "from-red-700 to-red-600",       rating: 4.2, time: "30-35 mins", offer: "Treat Box at ₹199",        tags: "Chicken · Burgers" },
   { name: "Subway",     emoji: "🥖", bg: "from-green-600 to-lime-500",    rating: 4.0, time: "25-30 mins", offer: "15% off on ₹299+",         tags: "Wraps · Salads" },
-  { name: "Behrouz",    emoji: "🍛", img: "/BehrouzBiryani.jpeg",   bg: "from-amber-800 to-amber-600",   rating: 4.4, time: "35-40 mins", offer: "40% OFF up to ₹80",        tags: "Biryani · Mughlai" },
-  { name: "Wow! Momo", emoji: "🥟", img: "/wowMomo.jpeg",          bg: "from-blue-500 to-cyan-400",     rating: 4.2, time: "25-30 mins", offer: "₹75 off on ₹299+",         tags: "Momos · Chinese" },
-  { name: "Haldiram's",emoji: "🧆", img: "/HaldiRam.jpeg",   bg: "from-orange-500 to-amber-400",  rating: 4.5, time: "40-45 mins", offer: "Free delivery",            tags: "Snacks · Sweets" },
+  { name: "Behrouz",    emoji: "🍛", img: "/BehrouzBiryaniNew.png",   bg: "from-amber-800 to-amber-600",   rating: 4.4, time: "35-40 mins", offer: "40% OFF up to ₹80",        tags: "Biryani · Mughlai" },
+  { name: "Wow! Momo", emoji: "🥟", img: "/wowMomoNew.png",          bg: "from-blue-500 to-cyan-400",     rating: 4.2, time: "25-30 mins", offer: "₹75 off on ₹299+",         tags: "Momos · Chinese" },
+  { name: "Haldiram's",emoji: "🧆", img: "/HalidRamNew.png",   bg: "from-orange-500 to-amber-400",  rating: 4.5, time: "40-45 mins", offer: "Free delivery",            tags: "Snacks · Sweets" },
 ];
 
 const RESTAURANTS = [
-  { name: "Nom Nom Express",     tags: "Chinese, Pan-Asian, Thai, Asian", rating: 4.0, time: "20-25 mins", area: "Andheri East · 0.9 km", offer: "70% OFF\nUPTO ₹140", emoji: "🍜", img: "/nomnomExpress.jpeg", bg: "from-[#5C2300] via-[#A84000] to-[#D45200]" },
-  { name: "Faasos — Wraps",      tags: "Wraps, Rolls, Biryani",           rating: 4.3, time: "20-25 mins", area: "Bandra West · 1.2 km",  offer: "BUY 1\nGET 1",      emoji: "🌯", img: "/Faasos.jpeg",       bg: "from-[#3B0764] via-[#7E22CE] to-[#A855F7]" },
-  { name: "Wow! Momo",          tags: "Momos, Chinese, Tibetan",          rating: 4.1, time: "15-20 mins", area: "Juhu · 0.8 km",         offer: "BUY 1\nGET 1",      emoji: "🥟", img: "/wowMomo.jpeg",           bg: "from-[#713F12] via-[#CA8A04] to-[#EAB308]" },
-  { name: "Nothing But Chicken", tags: "Salads, Biryani, Kebabs",         rating: 4.4, time: "10-15 mins", area: "Andheri East · 0.8 km", offer: "ITEMS\nAT ₹118",    emoji: "🍗", img: "/nothingButChicken.jpeg", bg: "from-[#7F1D1D] via-[#B91C1C] to-[#EF4444]" },
-  { name: "Behrouz Biryani",     tags: "Biryani, Mughlai, North Indian",  rating: 4.4, time: "35-40 mins", area: "Bandra West · 2.1 km",  offer: "40% OFF\nUPTO ₹80", emoji: "🍛", img: "/BehrouzBiryani.jpeg",    bg: "from-[#5C2300] via-[#92400E] to-[#D97706]" },
-  { name: "Pizza Hut",           tags: "Pizzas, Pastas, Desserts",        rating: 4.1, time: "30-35 mins", area: "Andheri West · 1.5 km", offer: "BUY 1\nGET 1 FREE", emoji: "🍕", img: "/PizzaHut.jpeg",       bg: "from-[#7F1D1D] via-[#C2410C] to-[#F97316]" },
-  { name: "Taco Bell",           tags: "Mexican, Tacos, Burritos",        rating: 4.0, time: "25-30 mins", area: "Kurla · 3.2 km",        offer: "ITEMS\nAT ₹49",     emoji: "🌮", img: "/TacoBell.jpeg",      bg: "from-[#3F3000] via-[#854D0E] to-[#D97706]" },
-  { name: "Haldiram's",          tags: "North Indian, Sweets, Snacks",    rating: 4.5, time: "40-45 mins", area: "Santacruz East · 2.8 km",offer: "FREE\nDELIVERY",   emoji: "🍮", img: "/HaldiRam.jpeg",      bg: "from-[#713F12] via-[#B45309] to-[#F59E0B]" },
+  { name: "Nom Nom Express",     tags: "Chinese, Pan-Asian, Thai, Asian", rating: 4.0, time: "20-25 mins", area: "Andheri East · 0.9 km", offer: "70% OFF\nUPTO ₹140", emoji: "🍜", img: "/nomnomExpressNew.png", bg: "from-[#5C2300] via-[#A84000] to-[#D45200]" },
+  { name: "Faasos — Wraps",      tags: "Wraps, Rolls, Biryani",           rating: 4.3, time: "20-25 mins", area: "Bandra West · 1.2 km",  offer: "BUY 1\nGET 1",      emoji: "🌯", img: "/FaasosNew.png",       bg: "from-[#3B0764] via-[#7E22CE] to-[#A855F7]" },
+  { name: "Wow! Momo",          tags: "Momos, Chinese, Tibetan",          rating: 4.1, time: "15-20 mins", area: "Juhu · 0.8 km",         offer: "BUY 1\nGET 1",      emoji: "🥟", img: "/wowMomoNew.png",           bg: "from-[#713F12] via-[#CA8A04] to-[#EAB308]" },
+  { name: "Nothing But Chicken", tags: "Salads, Biryani, Kebabs",         rating: 4.4, time: "10-15 mins", area: "Andheri East · 0.8 km", offer: "ITEMS\nAT ₹118",    emoji: "🍗", img: "/nothingButChickenNew.png", bg: "from-[#7F1D1D] via-[#B91C1C] to-[#EF4444]" },
+  { name: "Behrouz Biryani",     tags: "Biryani, Mughlai, North Indian",  rating: 4.4, time: "35-40 mins", area: "Bandra West · 2.1 km",  offer: "40% OFF\nUPTO ₹80", emoji: "🍛", img: "/BehrouzBiryaniNew.png",    bg: "from-[#5C2300] via-[#92400E] to-[#D97706]" },
+  { name: "Pizza Hut",           tags: "Pizzas, Pastas, Desserts",        rating: 4.1, time: "30-35 mins", area: "Andheri West · 1.5 km", offer: "BUY 1\nGET 1 FREE", emoji: "🍕", img: "/PizzaHutNew.png",       bg: "from-[#7F1D1D] via-[#C2410C] to-[#F97316]" },
+  { name: "Taco Bell",           tags: "Mexican, Tacos, Burritos",        rating: 4.0, time: "25-30 mins", area: "Kurla · 3.2 km",        offer: "ITEMS\nAT ₹49",     emoji: "🌮", img: "/TacoBellNew.png",      bg: "from-[#3F3000] via-[#854D0E] to-[#D97706]" },
+  { name: "Haldiram's",          tags: "North Indian, Sweets, Snacks",    rating: 4.5, time: "40-45 mins", area: "Santacruz East · 2.8 km",offer: "FREE\nDELIVERY",   emoji: "🍮", img: "/HalidRamNew.png",      bg: "from-[#713F12] via-[#B45309] to-[#F59E0B]" },
 ];
 
 const INSTAMART = [
