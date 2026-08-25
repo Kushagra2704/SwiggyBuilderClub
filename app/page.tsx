@@ -19,24 +19,24 @@ const CATEGORIES = [
 
 const CHAINS = [
   { name: "McDonald's", emoji: "🍔", bg: "from-yellow-400 to-yellow-300", rating: 4.3, time: "20-25 mins", offer: "FREE McFlurry above ₹299", tags: "Burgers · Wraps" },
-  { name: "Pizza Hut",  emoji: "🍕", bg: "from-red-600 to-red-500",       rating: 4.1, time: "30-35 mins", offer: "Buy 1 Get 1 Free",        tags: "Pizzas · Pastas" },
+  { name: "Pizza Hut",  emoji: "🍕", img: "/PizzaHut.jpeg",    bg: "from-red-600 to-red-500",       rating: 4.1, time: "30-35 mins", offer: "Buy 1 Get 1 Free",        tags: "Pizzas · Pastas" },
   { name: "Domino's",   emoji: "🍕", bg: "from-blue-700 to-blue-500",     rating: 4.2, time: "25-30 mins", offer: "2 Pizzas at ₹99",          tags: "Pizzas · Sides" },
   { name: "KFC",        emoji: "🍗", bg: "from-red-700 to-red-600",       rating: 4.2, time: "30-35 mins", offer: "Treat Box at ₹199",        tags: "Chicken · Burgers" },
   { name: "Subway",     emoji: "🥖", bg: "from-green-600 to-lime-500",    rating: 4.0, time: "25-30 mins", offer: "15% off on ₹299+",         tags: "Wraps · Salads" },
-  { name: "Behrouz",    emoji: "🍛", bg: "from-amber-800 to-amber-600",   rating: 4.4, time: "35-40 mins", offer: "40% OFF up to ₹80",        tags: "Biryani · Mughlai" },
-  { name: "Wow! Momo", emoji: "🥟", bg: "from-blue-500 to-cyan-400",     rating: 4.2, time: "25-30 mins", offer: "₹75 off on ₹299+",         tags: "Momos · Chinese" },
-  { name: "Haldiram's",emoji: "🧆", bg: "from-orange-500 to-amber-400",  rating: 4.5, time: "40-45 mins", offer: "Free delivery",            tags: "Snacks · Sweets" },
+  { name: "Behrouz",    emoji: "🍛", img: "/BehrouzBiryani.jpeg",   bg: "from-amber-800 to-amber-600",   rating: 4.4, time: "35-40 mins", offer: "40% OFF up to ₹80",        tags: "Biryani · Mughlai" },
+  { name: "Wow! Momo", emoji: "🥟", img: "/wowMomo.jpeg",          bg: "from-blue-500 to-cyan-400",     rating: 4.2, time: "25-30 mins", offer: "₹75 off on ₹299+",         tags: "Momos · Chinese" },
+  { name: "Haldiram's",emoji: "🧆", img: "/HaldiRam.jpeg",   bg: "from-orange-500 to-amber-400",  rating: 4.5, time: "40-45 mins", offer: "Free delivery",            tags: "Snacks · Sweets" },
 ];
 
 const RESTAURANTS = [
-  { name: "Nom Nom Express",     tags: "Chinese, Pan-Asian, Thai, Asian", rating: 4.0, time: "20-25 mins", area: "Andheri East · 0.9 km", offer: "70% OFF\nUPTO ₹140", emoji: "🍜", bg: "from-[#5C2300] via-[#A84000] to-[#D45200]" },
-  { name: "Faasos — Wraps",      tags: "Wraps, Rolls, Biryani",           rating: 4.3, time: "20-25 mins", area: "Bandra West · 1.2 km",  offer: "BUY 1\nGET 1",      emoji: "🌯", bg: "from-[#3B0764] via-[#7E22CE] to-[#A855F7]" },
-  { name: "Wow! Momo",          tags: "Momos, Chinese, Tibetan",          rating: 4.1, time: "15-20 mins", area: "Juhu · 0.8 km",         offer: "BUY 1\nGET 1",      emoji: "🥟", bg: "from-[#713F12] via-[#CA8A04] to-[#EAB308]" },
-  { name: "Nothing But Chicken", tags: "Salads, Biryani, Kebabs",         rating: 4.4, time: "10-15 mins", area: "Andheri East · 0.8 km", offer: "ITEMS\nAT ₹118",    emoji: "🍗", bg: "from-[#7F1D1D] via-[#B91C1C] to-[#EF4444]" },
-  { name: "Behrouz Biryani",     tags: "Biryani, Mughlai, North Indian",  rating: 4.4, time: "35-40 mins", area: "Bandra West · 2.1 km",  offer: "40% OFF\nUPTO ₹80", emoji: "🍛", bg: "from-[#5C2300] via-[#92400E] to-[#D97706]" },
-  { name: "Pizza Hut",           tags: "Pizzas, Pastas, Desserts",        rating: 4.1, time: "30-35 mins", area: "Andheri West · 1.5 km", offer: "BUY 1\nGET 1 FREE", emoji: "🍕", bg: "from-[#7F1D1D] via-[#C2410C] to-[#F97316]" },
-  { name: "Taco Bell",           tags: "Mexican, Tacos, Burritos",        rating: 4.0, time: "25-30 mins", area: "Kurla · 3.2 km",        offer: "ITEMS\nAT ₹49",     emoji: "🌮", bg: "from-[#3F3000] via-[#854D0E] to-[#D97706]" },
-  { name: "Haldiram's",          tags: "North Indian, Sweets, Snacks",    rating: 4.5, time: "40-45 mins", area: "Santacruz East · 2.8 km",offer: "FREE\nDELIVERY",   emoji: "🍮", bg: "from-[#713F12] via-[#B45309] to-[#F59E0B]" },
+  { name: "Nom Nom Express",     tags: "Chinese, Pan-Asian, Thai, Asian", rating: 4.0, time: "20-25 mins", area: "Andheri East · 0.9 km", offer: "70% OFF\nUPTO ₹140", emoji: "🍜", img: "/nomnomExpress.jpeg", bg: "from-[#5C2300] via-[#A84000] to-[#D45200]" },
+  { name: "Faasos — Wraps",      tags: "Wraps, Rolls, Biryani",           rating: 4.3, time: "20-25 mins", area: "Bandra West · 1.2 km",  offer: "BUY 1\nGET 1",      emoji: "🌯", img: "/Faasos.jpeg",       bg: "from-[#3B0764] via-[#7E22CE] to-[#A855F7]" },
+  { name: "Wow! Momo",          tags: "Momos, Chinese, Tibetan",          rating: 4.1, time: "15-20 mins", area: "Juhu · 0.8 km",         offer: "BUY 1\nGET 1",      emoji: "🥟", img: "/wowMomo.jpeg",           bg: "from-[#713F12] via-[#CA8A04] to-[#EAB308]" },
+  { name: "Nothing But Chicken", tags: "Salads, Biryani, Kebabs",         rating: 4.4, time: "10-15 mins", area: "Andheri East · 0.8 km", offer: "ITEMS\nAT ₹118",    emoji: "🍗", img: "/nothingButChicken.jpeg", bg: "from-[#7F1D1D] via-[#B91C1C] to-[#EF4444]" },
+  { name: "Behrouz Biryani",     tags: "Biryani, Mughlai, North Indian",  rating: 4.4, time: "35-40 mins", area: "Bandra West · 2.1 km",  offer: "40% OFF\nUPTO ₹80", emoji: "🍛", img: "/BehrouzBiryani.jpeg",    bg: "from-[#5C2300] via-[#92400E] to-[#D97706]" },
+  { name: "Pizza Hut",           tags: "Pizzas, Pastas, Desserts",        rating: 4.1, time: "30-35 mins", area: "Andheri West · 1.5 km", offer: "BUY 1\nGET 1 FREE", emoji: "🍕", img: "/PizzaHut.jpeg",       bg: "from-[#7F1D1D] via-[#C2410C] to-[#F97316]" },
+  { name: "Taco Bell",           tags: "Mexican, Tacos, Burritos",        rating: 4.0, time: "25-30 mins", area: "Kurla · 3.2 km",        offer: "ITEMS\nAT ₹49",     emoji: "🌮", img: "/TacoBell.jpeg",      bg: "from-[#3F3000] via-[#854D0E] to-[#D97706]" },
+  { name: "Haldiram's",          tags: "North Indian, Sweets, Snacks",    rating: 4.5, time: "40-45 mins", area: "Santacruz East · 2.8 km",offer: "FREE\nDELIVERY",   emoji: "🍮", img: "/HaldiRam.jpeg",      bg: "from-[#713F12] via-[#B45309] to-[#F59E0B]" },
 ];
 
 const INSTAMART = [
@@ -69,7 +69,10 @@ function DesktopRestaurantCard({ r }: { r: typeof RESTAURANTS[number] }) {
   return (
     <div className="group cursor-pointer overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-md transition-shadow">
       <div className={`relative flex h-44 items-center justify-center bg-gradient-to-br ${r.bg} overflow-hidden`}>
-        <span className="text-7xl drop-shadow-lg group-hover:scale-110 transition-transform duration-300">{r.emoji}</span>
+        {r.img
+          ? <img src={r.img} alt={r.name} className="absolute inset-0 h-full w-full object-cover" />
+          : <span className="text-7xl drop-shadow-lg group-hover:scale-110 transition-transform duration-300">{r.emoji}</span>
+        }
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/75 to-transparent pt-8 pb-2 px-3">
           <span className="text-xs font-bold text-white uppercase tracking-wide">{line1} {line2}</span>
         </div>
@@ -228,10 +231,13 @@ export default function Home() {
                           <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78Z" />
                         </svg>
                       </button>
-                      {/* food emoji */}
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="text-[70px] leading-none drop-shadow-2xl">{r.emoji}</span>
-                      </div>
+                      {/* food image or emoji */}
+                      {r.img
+                        ? <img src={r.img} alt={r.name} className="absolute inset-0 h-full w-full object-cover" />
+                        : <div className="absolute inset-0 flex items-center justify-center">
+                            <span className="text-[70px] leading-none drop-shadow-2xl">{r.emoji}</span>
+                          </div>
+                      }
                       {/* offer overlay */}
                       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent pt-10 pb-2 px-2.5">
                         <p className="text-[12px] font-black text-white uppercase leading-tight">{offerL1}</p>
@@ -312,9 +318,12 @@ export default function Home() {
                   className={["flex gap-3 py-4 cursor-pointer", i < RESTAURANTS.length - 1 ? "border-b border-gray-100" : ""].join(" ")}
                 >
                   <div className={`relative shrink-0 h-28 w-28 rounded-[18px] bg-gradient-to-br ${r.bg} overflow-hidden`}>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-[52px] leading-none">{r.emoji}</span>
-                    </div>
+                    {r.img
+                      ? <img src={r.img} alt={r.name} className="absolute inset-0 h-full w-full object-cover" />
+                      : <div className="absolute inset-0 flex items-center justify-center">
+                          <span className="text-[52px] leading-none">{r.emoji}</span>
+                        </div>
+                    }
                     <button className="absolute top-1.5 right-1.5 h-6 w-6 rounded-full bg-white/90 shadow flex items-center justify-center">
                       <svg viewBox="0 0 24 24" fill="none" stroke="#374151" strokeWidth="2" className="h-3 w-3">
                         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78Z" />
@@ -512,7 +521,10 @@ export default function Home() {
               {CHAINS.map((c) => (
                 <div key={c.name} className="group shrink-0 w-[186px] cursor-pointer overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-md transition-shadow">
                   <div className={`relative flex h-36 items-center justify-center bg-gradient-to-br ${c.bg} overflow-hidden`}>
-                    <span className="text-6xl drop-shadow-lg group-hover:scale-110 transition-transform duration-300">{c.emoji}</span>
+                    {c.img
+                      ? <img src={c.img} alt={c.name} className="absolute inset-0 h-full w-full object-cover" />
+                      : <span className="text-6xl drop-shadow-lg group-hover:scale-110 transition-transform duration-300">{c.emoji}</span>
+                    }
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent pt-6 pb-2 px-3">
                       <span className="text-[11px] font-bold text-white uppercase tracking-wide">{c.offer}</span>
                     </div>
