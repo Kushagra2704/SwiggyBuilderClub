@@ -36,6 +36,9 @@ const CORRECTIONS: [RegExp, string][] = [
   [/\b(biryani|bryani|biriyani|beriani)\b/gi, "biryani"],
   [/\b(behrouz|behroz|be rows|bahrooz)\b/gi, "Behrouz"],
   [/\b(haldiram[s']?|haldi ram|haldirams)\b/gi, "Haldiram's"],
+  [/\b(g\s?pay|gpay|google\s?pay|ji\s?pay|ji\s?per|repair|g\.pay|geopay|geo pay)\b/gi, "GPay"],
+  [/\b(phone\s?pe|phonepay|phone\s?pay|phon pe|fon pe|fonpe)\b/gi, "PhonePe"],
+  [/\b(pay\s?tm|paitem|pay\s?team|paytm)\b/gi, "Paytm"],
 ];
 
 function correctTranscript(text: string): string {

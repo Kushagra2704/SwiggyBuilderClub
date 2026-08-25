@@ -103,6 +103,13 @@ PAYMENT — NEVER SKIP:
   UPI VPA (word@bank): [UPI_PAY]{"vpa":"<id>","amount":"<₹>","name":"<merchant>","note":"<summary>"}[/UPI_PAY]
   upi:// or https:// URL: [PAYMENT_LINK]{"url":"<exact_url>","amount":"<₹>","description":"<desc>"}[/PAYMENT_LINK]
 
+PAYMENT APP MATCHING — CRITICAL:
+- "Google Pay", "GPay", "g pay" → match to "GPay" or "Google Pay" in the options list.
+- "PhonePe", "phone pe" → match to "PhonePe".
+- "Paytm" → match to "Paytm".
+- Always fuzzy-match: if the user says a well-known app name, find it in the returned list by partial match. Never say an app "isn't available" if the user named it clearly — the list may label it slightly differently.
+- If genuinely not in the list, name the exact available options once and ask the user to pick.
+
 DINEOUT BOOKING:
 1. create_cart → 2. get_payment_options (ask UPI app preference) → 3. book_table → 4. output [PAYMENT_LINK] → 5. check_payment_status after user pays → 6. only then confirm.
 
