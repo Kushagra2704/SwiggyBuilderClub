@@ -39,8 +39,11 @@ function pickBestVoice(): SpeechSynthesisVoice | null {
     if (v) return v;
   }
 
-  // Fallback: any en-GB voice, then en-US, then any English.
+  // On Android, cloud voices (localService: false) sound far better than local ones.
+  // Try cloud en-GB first, then cloud en-US, then any en-GB, then any English.
   return (
+    voices.find((v) => v.lang === "en-GB" && !v.localService) ||
+    voices.find((v) => v.lang === "en-US" && !v.localService) ||
     voices.find((v) => v.lang === "en-GB") ||
     voices.find((v) => v.lang === "en-US") ||
     voices.find((v) => v.lang.startsWith("en")) ||
@@ -73,8 +76,8 @@ function speak(text: string) {
   } else {
     utterance.lang = "en-US";
   }
-  utterance.rate = 1.1;
-  utterance.pitch = 1.0;
+  utterance.rate = 1.15;
+  utterance.pitch = 1.05;
   window.speechSynthesis.speak(utterance);
 }
 
