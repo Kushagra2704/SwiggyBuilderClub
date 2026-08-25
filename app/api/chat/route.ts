@@ -84,36 +84,32 @@ export async function POST(request: NextRequest) {
               })
             : client.beta.messages.stream(baseParams);
 
-        // Buffer all text and emit only the LAST text block after all MCP tool
-        // calls complete. This prevents intermediate narration ("Now searching...",
-        // "Let me grab...") that the model emits before tool calls from leaking
-        // into the UI.
-        let currentBlock = "";
-        let lastTextBlock = "";
+        // Stream text in real-time for fast responses.
+        // When a tool_use block starts, send a "reset" event so the client
+        // clears any pre-tool narration that was already streamed.
+        // After tool calls complete the model's final text streams normally.
         let inTextBlock = false;
 
         for await (const event of claudeStream) {
           if (event.type === "content_block_start") {
             const block = (event as { content_block?: { type: string } }).content_block;
-            if (block?.type === "text") {
-              inTextBlock = true;
-              currentBlock = "";
-            } else {
+            if (block?.type === "tool_use") {
               inTextBlock = false;
+              enqueue({ type: "reset" }); // clear any pre-tool narration
+            } else if (block?.type === "text") {
+              inTextBlock = true;
             }
           } else if (
             event.type === "content_block_delta" &&
             (event.delta as { type: string }).type === "text_delta" &&
             inTextBlock
           ) {
-            currentBlock += (event.delta as { type: string; text?: string }).text ?? "";
-          } else if (event.type === "content_block_stop" && inTextBlock) {
-            lastTextBlock = currentBlock;
+            enqueue({ type: "text", text: (event.delta as { type: string; text?: string }).text ?? "" });
+          } else if (event.type === "content_block_stop") {
             inTextBlock = false;
           }
         }
 
-        if (lastTextBlock) enqueue({ type: "text", text: lastTextBlock });
         enqueue({ type: "done" });
       } catch (err) {
         enqueue({ type: "error", message: err instanceof Error ? err.message : "An error occurred" });

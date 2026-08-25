@@ -255,11 +255,19 @@ export default function ConciergeWidget() {
               continue;
             }
 
-            if (event.type === "text" && event.text) {
+            if (event.type === "reset") {
+              // Tool call started — clear any pre-tool narration already streamed
+              assistantText = "";
+              setMessages((prev) =>
+                prev.map((m) =>
+                  m.id === loadingId ? { ...m, content: "", isLoading: true } : m
+                )
+              );
+            } else if (event.type === "text" && event.text) {
               assistantText += event.text;
               setMessages((prev) =>
                 prev.map((m) =>
-                  m.id === loadingId ? { ...m, content: assistantText } : m
+                  m.id === loadingId ? { ...m, content: assistantText, isLoading: false } : m
                 )
               );
             } else if (event.type === "error") {
