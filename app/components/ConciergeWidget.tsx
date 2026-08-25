@@ -48,10 +48,24 @@ function pickBestVoice(): SpeechSynthesisVoice | null {
   );
 }
 
+function stripMarkdown(text: string): string {
+  return text
+    .replace(/\*\*(.+?)\*\*/g, "$1")   // **bold**
+    .replace(/\*(.+?)\*/g, "$1")        // *italic*
+    .replace(/__(.+?)__/g, "$1")        // __bold__
+    .replace(/_(.+?)_/g, "$1")          // _italic_
+    .replace(/`(.+?)`/g, "$1")          // `code`
+    .replace(/#{1,6}\s*/g, "")          // # headings
+    .replace(/^\s*[-*+]\s+/gm, "")      // bullet points
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1") // [links](url)
+    .replace(/[🍿🥤🍫🎬]/gu, "")      // emojis
+    .trim();
+}
+
 function speak(text: string) {
   if (typeof window === "undefined" || !window.speechSynthesis) return;
   window.speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(text);
+  const utterance = new SpeechSynthesisUtterance(stripMarkdown(text));
   const voice = _bestVoice ?? pickBestVoice();
   if (voice) {
     utterance.voice = voice;
