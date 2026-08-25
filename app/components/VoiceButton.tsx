@@ -30,7 +30,7 @@ declare global {
 }
 
 const CORRECTIONS: [RegExp, string][] = [
-  [/\b(insta\s?mart|instrument|instagram|instamart|instant mart|insta mark)\b/gi, "Instamart"],
+  [/\b(insta\s?mart|instrument|instagram|instamart|instant mart|insta mark|instem art|in stomach|instam art|insta mart|instamar|instmart|insta-mart|into mart|instant mark|instomert|instamort|instument)\b/gi, "Instamart"],
   [/\b(swiggy|ziggy|wiggy|sugary|swiggie|sweegy|swigy)\b/gi, "Swiggy"],
   [/\b(dine\s?out|dinout|dine out)\b/gi, "Dineout"],
   [/\b(biryani|bryani|biriyani|beriani)\b/gi, "biryani"],
