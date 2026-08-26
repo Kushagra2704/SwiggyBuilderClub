@@ -93,7 +93,7 @@ export async function POST(request: NextRequest) {
         for await (const event of claudeStream) {
           if (event.type === "content_block_start") {
             const block = (event as { content_block?: { type: string } }).content_block;
-            if (block?.type === "tool_use") {
+            if (block?.type === "tool_use" || block?.type === "mcp_tool_use") {
               inTextBlock = false;
               enqueue({ type: "reset" }); // clear any pre-tool narration
             } else if (block?.type === "text") {

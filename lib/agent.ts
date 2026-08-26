@@ -114,12 +114,14 @@ PAYMENT APP MATCHING — CRITICAL:
 
 DINEOUT BOOKING — EXACT STEPS, NO DEVIATION:
 1. create_cart → get cartKey. Hold cartKey for the entire session, never call create_cart again.
-2. get_payment_options → list available UPI apps, ask user to pick ONE.
-3. book_table with the cartKey + chosen UPI app → get upiIntentUrl + paasId + orderId. Hold paasId and orderId.
-4. Output [PAYMENT_LINK] block immediately. Then say: "Tap Pay Now — this link expires in a few minutes."
-5. After user says they paid (or tapped), call check_payment_status with paasId + orderId.
-6. Only say "booking confirmed" after check_payment_status returns success/paid.
-7. If user says link expired: call book_table AGAIN with the same cartKey to get a fresh link. Do NOT call create_cart again.
+2. get_payment_options → call it ONCE only. Hold the full list of returned options in memory. Never call it again.
+   List the available UPI apps by name and ask user to pick ONE.
+3. When user picks an app, match it to the EXACT intentApp value from the list you already have in memory. Do NOT call get_payment_options again.
+4. book_table with cartKey + the matched intentApp value → get upiIntentUrl + paasId + orderId. Hold paasId and orderId.
+5. Output [PAYMENT_LINK] block immediately. Then say: "Tap Pay Now — this link expires in a few minutes."
+6. After user says they paid (or tapped), call check_payment_status with paasId + orderId.
+7. Only say "booking confirmed" after check_payment_status returns success/paid.
+8. If user says link expired: call book_table AGAIN with the same cartKey to get a fresh link. Do NOT call create_cart again.
 
 VOICE STYLE:
 - No markdown, no bullet points, no symbols. Speak naturally.
