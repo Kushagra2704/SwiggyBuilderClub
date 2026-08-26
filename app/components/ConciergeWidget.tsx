@@ -53,15 +53,19 @@ function pickBestVoice(): SpeechSynthesisVoice | null {
 
 function stripMarkdown(text: string): string {
   return text
-    .replace(/\*\*(.+?)\*\*/g, "$1")   // **bold**
-    .replace(/\*(.+?)\*/g, "$1")        // *italic*
-    .replace(/__(.+?)__/g, "$1")        // __bold__
-    .replace(/_(.+?)_/g, "$1")          // _italic_
-    .replace(/`(.+?)`/g, "$1")          // `code`
-    .replace(/#{1,6}\s*/g, "")          // # headings
-    .replace(/^\s*[-*+]\s+/gm, "")      // bullet points
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1") // [links](url)
-    .replace(/[🍿🥤🍫🎬]/gu, "")      // emojis
+    .replace(/\[UPI_PAY\][\s\S]*?\[\/UPI_PAY\]/g, "Payment request sent.")
+    .replace(/\[PAYMENT_LINK\][\s\S]*?\[\/PAYMENT_LINK\]/g, "Payment link ready.")
+    .replace(/\*\*(.+?)\*\*/g, "$1")
+    .replace(/\*(.+?)\*/g, "$1")
+    .replace(/__(.+?)__/g, "$1")
+    .replace(/_(.+?)_/g, "$1")
+    .replace(/`(.+?)`/g, "$1")
+    .replace(/#{1,6}\s*/g, "")
+    .replace(/^\s*[-*+]\s+/gm, "")
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/https?:\/\/\S+/g, "")     // strip raw URLs
+    .replace(/upi:\/\/\S+/g, "")        // strip UPI deep links
+    .replace(/[🍿🥤🍫🎬]/gu, "")
     .trim();
 }
 

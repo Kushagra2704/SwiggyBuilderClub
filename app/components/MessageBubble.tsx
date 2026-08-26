@@ -186,7 +186,7 @@ export default function MessageBubble({ message }: Props) {
             ) : part.type === "payment_link" ? (
               <PaymentLinkCard key={i} raw={part.value} />
             ) : (
-              <span key={i}>{part.value}</span>
+              <span key={i} style={{ whiteSpace: "pre-wrap" }}>{part.value}</span>
             )
           )
         )}

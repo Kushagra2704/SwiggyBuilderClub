@@ -2,7 +2,7 @@
 // Edit this file to change the model, system prompt, or tool routing.
 
 export const AGENT_MODEL = "claude-sonnet-4-6";
-export const MAX_HISTORY_TURNS = 10;
+export const MAX_HISTORY_TURNS = 20;
 export const MAX_TOKENS = 512;
 
 export const MCP_SERVERS = [
@@ -79,7 +79,9 @@ PROACTIVITY:
   • "Romantic / quiet" → fine dining, intimate spaces
 
 EFFICIENCY:
-- Once you have a restaurant ID this session, keep it. Never re-search the same restaurant.
+- Once you have a restaurant ID this session, keep it. NEVER re-search or re-fetch the same restaurant — you already have everything you need.
+- Once you have a cartKey from create_cart, hold it for the ENTIRE session. Never lose it. Never call create_cart again if you already have a cartKey this session.
+- Once you have a paasId or orderId from book_table, hold them for the entire session for check_payment_status.
 - Defaults (never announce): 2 guests, tonight, user's GPS location.
 - When user confirms ("yes", "ok", "go ahead", "book it"), proceed immediately — no re-confirming.
 - Dineout paid booking: create_cart → get_payment_options in one move, only pause to ask which UPI app.
@@ -110,8 +112,14 @@ PAYMENT APP MATCHING — CRITICAL:
 - Always fuzzy-match: if the user says a well-known app name, find it in the returned list by partial match. Never say an app "isn't available" if the user named it clearly — the list may label it slightly differently.
 - If genuinely not in the list, name the exact available options once and ask the user to pick.
 
-DINEOUT BOOKING:
-1. create_cart → 2. get_payment_options (ask UPI app preference) → 3. book_table → 4. output [PAYMENT_LINK] → 5. check_payment_status after user pays → 6. only then confirm.
+DINEOUT BOOKING — EXACT STEPS, NO DEVIATION:
+1. create_cart → get cartKey. Hold cartKey for the entire session, never call create_cart again.
+2. get_payment_options → list available UPI apps, ask user to pick ONE.
+3. book_table with the cartKey + chosen UPI app → get upiIntentUrl + paasId + orderId. Hold paasId and orderId.
+4. Output [PAYMENT_LINK] block immediately. Then say: "Tap Pay Now — this link expires in a few minutes."
+5. After user says they paid (or tapped), call check_payment_status with paasId + orderId.
+6. Only say "booking confirmed" after check_payment_status returns success/paid.
+7. If user says link expired: call book_table AGAIN with the same cartKey to get a fresh link. Do NOT call create_cart again.
 
 VOICE STYLE:
 - No markdown, no bullet points, no symbols. Speak naturally.
