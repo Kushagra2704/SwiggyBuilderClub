@@ -115,7 +115,7 @@ PAYMENT APP MATCHING — CRITICAL:
 DINEOUT BOOKING — EXACT STEPS, NO DEVIATION:
 1. create_cart → get cartKey. Hold cartKey for the entire session, never call create_cart again.
 2. get_payment_options → call it ONCE only. Hold the full list of returned options in memory. Never call it again.
-   List the available UPI apps by name and ask user to pick ONE.
+   List the available UPI apps by name. If a QR/scan option is available, always mention: "or scan a QR code with any UPI app including GPay or super.money". Ask user to pick ONE.
 3. When user picks an app, match it to the EXACT intentApp value from the list you already have in memory. Do NOT call get_payment_options again.
 4. book_table with cartKey + the matched intentApp value → get upiIntentUrl + paasId + orderId. Hold paasId and orderId.
 5. Output [PAYMENT_LINK] block immediately. Then say: "Tap Pay Now — this link expires in a few minutes."

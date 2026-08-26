@@ -39,6 +39,9 @@ const CORRECTIONS: [RegExp, string][] = [
   [/\b(g\s?pay|gpay|google\s?pay|ji\s?pay|ji\s?per|repair|g\.pay|geopay|geo pay)\b/gi, "GPay"],
   [/\b(phone\s?pe|phonepay|phone\s?pay|phon pe|fon pe|fonpe)\b/gi, "PhonePe"],
   [/\b(pay\s?tm|paitem|pay\s?team|paytm)\b/gi, "Paytm"],
+  [/\b(cred|thread|tread|crid|kredit|credit app)\b/gi, "CRED"],
+  [/\b(super\s?\.?\s?money|superdot money|super money|super\.money)\b/gi, "super.money"],
+  [/\b(bhim|beam|beem|bim)\b/gi, "BHIM"],
 ];
 
 function correctTranscript(text: string): string {
